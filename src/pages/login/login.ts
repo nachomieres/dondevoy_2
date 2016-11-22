@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 
+import { HomePage } from '../home/home';
+import { AuthData } from '../../providers/auth-data';
+
 /*
   Generated class for the Login page.
 
@@ -13,10 +16,18 @@ import { NavController } from 'ionic-angular';
 })
 export class LoginPage {
 
-  constructor(public navCtrl: NavController) {}
+  constructor(public navCtrl: NavController, private authData: AuthData) {}
 
   ionViewDidLoad() {
     console.log('Hello LoginPage Page');
+  }
+
+  login (e:string, p: string) {
+    this.authData.loginUser(e,p).then( authData => {
+        this.navCtrl.setRoot(HomePage);
+      }, error => {
+        alert (error);
+      });
   }
 
 }

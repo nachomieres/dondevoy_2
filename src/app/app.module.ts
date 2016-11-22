@@ -5,6 +5,8 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login';
 
+import { AuthData } from '../providers/auth-data';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -20,6 +22,6 @@ import { LoginPage } from '../pages/login/login';
     HomePage,
     LoginPage
   ],
-  providers: []
+  providers: [AuthData]
 })
 export class AppModule {}
