@@ -22,12 +22,12 @@ export class MyApp {
       messagingSenderId: "300387384343"
     });
 
-    // si no hay usuario va a la pagina de login
+    /*/ si no hay usuario va a la pagina de login
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         this.rootPage = HomePage;
       }
-    });
+    });*/
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
