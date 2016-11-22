@@ -40,6 +40,9 @@ export class HomePage {
     }); // platform ready
   } // constructor
 
+  arrancaBackground () {
+    BackgroundGeolocation.start();
+  }
   paraBackground () {
     BackgroundGeolocation.stop();
   }
