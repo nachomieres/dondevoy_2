@@ -28,7 +28,7 @@ export class HomePage {
       BackgroundGeolocation.configure((location) => {
         //alert ('[js] BackgroundGeolocation callback:  ' + location.latitude + ',' + location.longitude);
         //firebase.database().ref('rutas/' + this.user.uid).push ({
-        firebase.database().ref('rutas/test').push ({
+        firebase.database().ref('/test').push ({
             latitud: location.latitude,
             longitud: location.longitude
           });
