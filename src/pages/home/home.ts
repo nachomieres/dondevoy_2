@@ -4,6 +4,9 @@ import { NavController, Platform } from 'ionic-angular';
 import {Geolocation} from 'ionic-native';
 import { BackgroundGeolocation } from 'ionic-native';
 
+import { LoginPage } from '../login/login';
+import { AuthData } from '../../providers/auth-data';
+
 import firebase from 'firebase';
 
 @Component({
@@ -14,7 +17,8 @@ export class HomePage {
 
   user:any = firebase.auth().currentUser;
 
-  constructor(public navCtrl: NavController, private platform: Platform) {
+  constructor(public navCtrl: NavController, private platform: Platform, private authData: AuthData) {
+    console.log (this.user);
     platform.ready().then(() => {
       let config = {
         desiredAccuracy: 10,
@@ -50,6 +54,11 @@ export class HomePage {
   }
   paraBackground () {
     BackgroundGeolocation.stop();
+  }
+  logOut () {
+    this.authData.logoutUser().then(() => {
+    this.navCtrl.setRoot(LoginPage);
+  });
   }
 
 } // Class home
