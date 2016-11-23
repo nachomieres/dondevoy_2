@@ -45,16 +45,19 @@ export class HomePage {
       }, config); // configuracion del BackgroundGeolocation
       console.log ('buscando posicion...');
       // Turn ON the background-geolocation system.  The user will be tracked whenever they suspend the app.
-      Geolocation.getCurrentPosition().then(pos => {
-        console.log('lat: ' + pos.coords.latitude + ', lon: ' + pos.coords.longitude);
-        //BackgroundGeolocation.start();
-        this.permisoBackground = true;
-      }); 
+
     }); // platform ready
   } // constructor
 
   arrancaBackground () {
-    BackgroundGeolocation.start();
+    console.log ('buscando posicion...');
+    Geolocation.getCurrentPosition().then(pos => {
+      console.log('lat: ' + pos.coords.latitude + ', lon: ' + pos.coords.longitude);
+      //BackgroundGeolocation.start();
+      this.permisoBackground = true;
+      BackgroundGeolocation.start();
+    });
+
   }
   paraBackground () {
     BackgroundGeolocation.stop();
@@ -64,14 +67,4 @@ export class HomePage {
     this.navCtrl.setRoot(LoginPage);
   });
   }
-  onInit () {
-    console.log ('buscando posicion...');
-    // Turn ON the background-geolocation system.  The user will be tracked whenever they suspend the app.
-    Geolocation.getCurrentPosition().then(pos => {
-      console.log('lat: ' + pos.coords.latitude + ', lon: ' + pos.coords.longitude);
-      //BackgroundGeolocation.start();
-      this.permisoBackground = true;
-    }); // Captura la posicion y una vez la consigue empieza a captuar en segundo plano
-  }
-
 } // Class home
