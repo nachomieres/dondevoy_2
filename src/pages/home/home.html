@@ -12,6 +12,9 @@
 </ion-header>
 
 <ion-content padding>
-  <button padding ion-button full (click)="arrancaBackground()">Arranca BackgroundGeolocation</button>
+  <div padding [visible]="!permisoBackground">
+    <p>Buscando posicion...</p><ion-icon name="ion-location"></ion-icon>
+  </div>
+  <button padding ion-button full (click)="arrancaBackground()" [disabled]="!permisoBackground">Arranca BackgroundGeolocation</button>
   <button ion-button full (click)="paraBackground()">Parar BackgroundGeolocation</button>
 </ion-content>

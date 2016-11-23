@@ -19,7 +19,7 @@
          [class.invalid]="!loginForm.controls.email.valid && (emailChanged || submitAttempt)"></ion-input>
      </ion-item>
      <ion-item class="error-message" *ngIf="!loginForm.controls.email.valid  && (emailChanged || submitAttempt)">
-       <p>Please enter a valid email.</p>
+       <p>El email no es valido.</p>
      </ion-item>
      <ion-item>
        <ion-label stacked>Password</ion-label>
@@ -27,7 +27,7 @@
          [class.invalid]="!loginForm.controls.password.valid && (passwordChanged || submitAttempt)"></ion-input>
      </ion-item>
      <ion-item class="error-message" *ngIf="!loginForm.controls.password.valid  && (passwordChanged || submitAttempt)">
-       <p>Your password needs more than 6 characters.</p>
+       <p>El password debe tener al menos 6 caracteres.</p>
      </ion-item>
    <button ion-button color="primary" block type="submit">Entrar</button>
   </form>

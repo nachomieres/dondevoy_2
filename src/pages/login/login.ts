@@ -17,7 +17,9 @@ import { AuthData } from '../../providers/auth-data';
 })
 export class LoginPage {
   public loginForm;
-  public submitAttempt = false;
+  submitAttempt = false;
+  emailChanged: boolean = false;
+  passwordChanged: boolean = false;
 
   constructor(public navCtrl: NavController, private authData: AuthData, private formBuilder: FormBuilder) {
     this.loginForm = formBuilder.group({

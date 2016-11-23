@@ -1,4 +1,11 @@
 page-login {
+  .scroll-content {
+    background: url("../../assets/images/background_loginscreen.png") no-repeat center center fixed !important;
+           -webkit-background-size: cover  !important;
+           -moz-background-size: cover  !important;
+           background-size: cover  !important;
+ }
+
   form {
    margin-bottom: 32px;
    position: absolute;
