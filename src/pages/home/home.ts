@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 
 import { NavController, Platform } from 'ionic-angular';
-import {Geolocation} from 'ionic-native';
-import { BackgroundGeolocation } from 'ionic-native';
+import { Geolocation,  BackgroundGeolocation } from 'ionic-native';
 
 import { LoginPage } from '../login/login';
+
 import { AuthData } from '../../providers/auth-data';
+import { LocationTracker } from '../../providers/location-tracker';
 
 import firebase from 'firebase';
 
@@ -19,52 +20,27 @@ export class HomePage {
   // hasta que no consigue la primera posicion con el getCurrentPosition no permite posiciones en background.
   permisoBackground: boolean = false;
 
-  constructor(public navCtrl: NavController, private platform: Platform, private authData: AuthData) {
+  constructor(public navCtrl: NavController, public platform: Platform,
+              public authData: AuthData, public locationTracker: LocationTracker) {
     console.log (this.user);
     platform.ready().then(() => {
-
-      // Configuracion del BackgroundGeolocation
-      let config = {
-        desiredAccuracy: 10,
-        stationaryRadius: 100,
-        distanceFilter: 5,
-        notificationTitle: 'Dondevoy',
-        notificationText: 'Guardando ruta...',
-        debug: true, //  enable this hear sounds for background-geolocation life-cycle.
-        stopOnTerminate: true, // enable this to clear background location settings when the app terminates
-      };
-      BackgroundGeolocation.configure((location) => {
-        // cada vez que obtiene una posicion, la guarda en la base de datos
-        firebase.database().ref('/test').push ({
-            latitud: location.latitude,
-            longitud: location.longitude
-          });
-        BackgroundGeolocation.finish(); // FOR IOS ONLY
-      }, (error) => {
-        alert ('BackgroundGeolocation error');
-      }, config); // configuracion del BackgroundGeolocation
-      console.log ('buscando posicion...');
-      // Turn ON the background-geolocation system.  The user will be tracked whenever they suspend the app.
 
     }); // platform ready
   } // constructor
 
   arrancaBackground () {
-    console.log ('buscando posicion...');
-    Geolocation.getCurrentPosition().then(pos => {
-      console.log('lat: ' + pos.coords.latitude + ', lon: ' + pos.coords.longitude);
-      //BackgroundGeolocation.start();
-      this.permisoBackground = true;
-      BackgroundGeolocation.start();
-    });
-
+    console.log ('Iniciando tracking');
+    this.locationTracker.startTracking();
   }
   paraBackground () {
-    BackgroundGeolocation.stop();
+    console.log ('tracking parado');
+    this.locationTracker.stopTracking();
   }
+
   logOut () {
     this.authData.logoutUser().then(() => {
-    this.navCtrl.setRoot(LoginPage);
-  });
+      this.navCtrl.setRoot(LoginPage);
+    });
   }
+
 } // Class home

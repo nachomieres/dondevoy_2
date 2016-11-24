@@ -1,8 +1,11 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, LoadingController, AlertController } from 'ionic-angular';
 import { FormBuilder, Validators } from '@angular/forms';
 
 import { HomePage } from '../home/home';
+import { ResetPasswordPage } from '../reset-password/reset-password';
+import { SignUpPage } from '../sign-up/sign-up';
+
 import { AuthData } from '../../providers/auth-data';
 
 /*
@@ -20,8 +23,12 @@ export class LoginPage {
   submitAttempt = false;
   emailChanged: boolean = false;
   passwordChanged: boolean = false;
+  loading: any;
 
-  constructor(public navCtrl: NavController, private authData: AuthData, private formBuilder: FormBuilder) {
+  constructor(public navCtrl: NavController, public loadingCtrl: LoadingController,
+              public alertCtrl: AlertController,
+              public authData: AuthData, public formBuilder: FormBuilder) {
+
     this.loginForm = formBuilder.group({
         email: ['', Validators.compose([Validators.required])],
         password: ['', Validators.compose([Validators.minLength(6), Validators.required])]
@@ -36,14 +43,38 @@ export class LoginPage {
   login () {
     this.submitAttempt = true;
     if (!this.loginForm.valid){
-      alert ('error en el formulario');
       console.log(this.loginForm.value);
     } else {
       this.authData.loginUser(this.loginForm.value.email, this.loginForm.value.password).then( authData => {
         this.navCtrl.setRoot(HomePage);
       }, error => {
-        console.log (error.message);
-      }); // then
-    } //else
+        this.loading.dismiss().then( () => {
+          let alert = this.alertCtrl.create({
+            message: "Error en los datos de acceso. \nRevisa el email y/o password",
+            buttons: [
+              {
+                text: "Ok",
+                role: 'cancel'
+              }
+            ]
+          });
+          alert.present();
+        });
+      });
+
+      this.loading = this.loadingCtrl.create({
+        content: "espera por favor...",
+        dismissOnPageChange: true,
+      });
+      this.loading.present();
+    }
   } // login
+
+  goToSignup () {
+    this.navCtrl.push(SignUpPage);
+  }
+
+  goToResetPassword () {
+    this.navCtrl.push(ResetPasswordPage);
+  }
 }

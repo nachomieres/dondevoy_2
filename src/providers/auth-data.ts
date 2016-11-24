@@ -23,4 +23,19 @@ export class AuthData {
   logoutUser(): any {
     return this.fireAuth.signOut();
   }
+  resetPassword(email: string): any {
+    return this.fireAuth.sendPasswordResetEmail(email);
+  }
+  signupUser(nombre: string, email: string, password: string): any {
+    return this.fireAuth.createUserWithEmailAndPassword(email, password).then((newUser) => {
+      var user = firebase.auth().currentUser;
+      user.updateProfile({
+        displayName: nombre,
+        photoURL: null
+      });
+      /*this.userProfile.child(newUser.uid).set({
+        email: email
+      });*/
+    });
+  }
 }

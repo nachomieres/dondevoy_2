@@ -11,7 +11,6 @@
 </ion-header>
 
 <ion-content padding class="fondo">
-
   <form [formGroup]="loginForm" (submit)="login()" novalidate>
     <ion-item>
        <ion-label stacked>Email</ion-label>
@@ -29,6 +28,13 @@
      <ion-item class="error-message" *ngIf="!loginForm.controls.password.valid  && (passwordChanged || submitAttempt)">
        <p>El password debe tener al menos 6 caracteres.</p>
      </ion-item>
-   <button ion-button color="primary" block type="submit">Entrar</button>
+   <button ion-button round margin-top block type="submit">Entrar</button>
   </form>
+  <button ion-button margin-top block clear (click)="goToSignup()">
+    Crear una cuenta
+  </button>
+
+  <button ion-button block clear (click)="goToResetPassword()">
+    ¿Has olvidado el password?
+  </button>
 </ion-content>
