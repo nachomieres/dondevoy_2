@@ -19,11 +19,23 @@ export class LocationTracker {
   startTracking() {
     // Background Tracking
       let config = {
-        desiredAccuracy: 0,
+        /*desiredAccuracy: 10,
         stationaryRadius: 20,
         distanceFilter: 10,
         debug: true,
-        interval: 2000
+        interval: 2000*/
+        desiredAccuracy: 10,
+        stationaryRadius: 20,
+        distanceFilter: 30,
+        maxLocations: 1000,
+        // Android only section
+        locationProvider: 0,
+        interval: 60000,
+        fastestInterval: 5000,
+        activitiesInterval: 10000,
+        notificationTitle: 'dondeVoy',
+        notificationText: 'Guardando ruta...',
+        notificationIconColor: '#FEDD1E'
       };
       BackgroundGeolocation.configure((location) => {
         console.log('BackgroundGeolocation:  ' + location.latitude + ',' + location.longitude);
@@ -32,6 +44,7 @@ export class LocationTracker {
           this.lat = location.latitude;
           this.lng = location.longitude;
           this.time = location.timestamp;
+          this.firebaseData.inserta(location);
         });
       }, (err) => {
         console.log(err);
@@ -51,6 +64,7 @@ export class LocationTracker {
           this.lat = position.coords.latitude;
           this.lng = position.coords.longitude;
           this.time = position.timestamp;
+          this.firebaseData.inserta(position.coords);
         });
       });
   }
