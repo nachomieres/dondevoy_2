@@ -24,13 +24,13 @@ export class LocationTracker {
         distanceFilter: 10,
         debug: true,
         interval: 2000*/
-        desiredAccuracy: 10,
+        desiredAccuracy:10,
         stationaryRadius: 20,
         distanceFilter: 30,
         maxLocations: 1000,
         // Android only section
-        locationProvider: 0,
-        interval: 60000,
+        locationProvider: 1,
+        interval: 5000,
         fastestInterval: 5000,
         activitiesInterval: 10000,
         notificationTitle: 'dondeVoy',
@@ -52,6 +52,7 @@ export class LocationTracker {
       // Turn ON the background-geolocation system.
       BackgroundGeolocation.start();
 
+      /*
       // Foreground Tracking
       let options = {
         frequency: 3000,
@@ -66,8 +67,8 @@ export class LocationTracker {
           this.time = position.timestamp;
           this.firebaseData.inserta(position.coords);
         });
-      });
-  }
+      }); // this.wathch */
+  } // startTracking
 
   stopTracking() {
     console.log('stopTracking');

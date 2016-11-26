@@ -10,31 +10,32 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding class="fondo">
+<ion-content class="login-content" padding>
+  <ion-row class="logo-row">
+    <ion-col></ion-col>
+    <ion-col width-67>
+      <img src="http://www.nachosoft.esy.es/logo.png"/>
+    </ion-col>
+    <ion-col></ion-col>
+  </ion-row>
   <form [formGroup]="loginForm" (submit)="login()" novalidate>
     <ion-item>
        <ion-label stacked>Email</ion-label>
        <ion-input #email formControlName="email" type="email" (change)="elementChanged(email)"
          [class.invalid]="!loginForm.controls.email.valid && (emailChanged || submitAttempt)"></ion-input>
      </ion-item>
-     <ion-item class="error-message" *ngIf="!loginForm.controls.email.valid  && (emailChanged || submitAttempt)">
-       <p>El email no es valido.</p>
-     </ion-item>
      <ion-item>
        <ion-label stacked>Password</ion-label>
        <ion-input #password formControlName="password" type="password" (change)="elementChanged(password)"
          [class.invalid]="!loginForm.controls.password.valid && (passwordChanged || submitAttempt)"></ion-input>
      </ion-item>
-     <ion-item class="error-message" *ngIf="!loginForm.controls.password.valid  && (passwordChanged || submitAttempt)">
-       <p>El password debe tener al menos 6 caracteres.</p>
-     </ion-item>
-   <button ion-button round margin-top block type="submit">Entrar</button>
-  </form>
-  <button ion-button margin-top block clear (click)="goToSignup()">
-    Crear una cuenta
-  </button>
+ <button ion-button margin-top large block type="submit">Entrar</button>
+ <button ion-button margin-top block clear (click)="goToSignup()">
+   Crear una cuenta
+ </button>
+ <button ion-button block clear (click)="goToResetPassword()">
+   ¿Has olvidado el password?
+ </button>
+</form>
 
-  <button ion-button block clear (click)="goToResetPassword()">
-    ¿Has olvidado el password?
-  </button>
 </ion-content>

@@ -11,7 +11,7 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding class="fondo">
+<ion-content class="home-content" padding>
   <h3 text-center>Current Latitude:</h3>
   <h3 text-center>{{locationTracker.lat}}</h3>
   <h3 text-center>Current Longitude:</h3>
@@ -19,6 +19,6 @@
   <h3 text-center>Current Time:</h3>
   <h3 text-center>{{locationTracker.time | date:'medium'}}</h3>
 
-  <button ion-button block round margin-bottom (click)="arrancaBackground()">Arranca BackgroundGeolocation</button>
-  <button ion-button block round (click)="paraBackground()">Parar BackgroundGeolocation</button>
+  <button ion-button block large margin-bottom (click)="arrancaBackground()">Arranca</button>
+  <button ion-button block large (click)="paraBackground()">Para</button>
 </ion-content>

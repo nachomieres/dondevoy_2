@@ -1,33 +1,37 @@
 page-sign-up {
 
-  form {
-   margin-bottom: 32px;
-  }
+    .sign-content {
+      background: url("http://www.nachosoft.esy.es/background_loginscreen.png") no-repeat center center fixed !important;
 
- p {
-   font-size: 0.8em;
-   color: #d2d2d2;
- }
+      .logo-row {
+        padding-top: 20px;
+        padding-bottom: 20px;
+      }
 
- ion-label {
-   margin-left: 5px;
- }
+      ion-row {
+         align-items: center;
+         text-align: center;
+       }
+       ion-item {
+           border-radius: 10px !important;
+           padding-left: 30px !important;
+           font-size: 1.3em;
+           border: 1px solid #ffffff;
+           border-bottom: 0px !important;
+           box-shadow: none !important;
+       }
+       .signup-col {
+         margin: 0px 16px 0px 16px;
+         padding-bottom: 20px;
+       }
 
- ion-input {
-   padding: 5px;
- }
+       .invalid {
+         border-bottom: 1px solid #FF6153;
+       }
 
- .invalid {
-   border-bottom: 1px solid #FF6153;
- }
+       .error-message .item-inner {
+         border-bottom: 0 !important;
+       }
+    }
 
- .error-message .item-inner {
-   border-bottom: 0 !important;
- }
-}
-.fondo {
-  background: url("../../assets/images/background_loginscreen.png") no-repeat center center fixed !important;
-         -webkit-background-size: cover  !important;
-         -moz-background-size: cover  !important;
-         background-size: cover  !important;
 }
