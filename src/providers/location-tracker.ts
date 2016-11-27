@@ -1,5 +1,5 @@
 import { Injectable, NgZone } from '@angular/core';
-import { Geolocation, Geoposition, BackgroundGeolocation } from 'ionic-native';
+import { BackgroundGeolocation } from 'ionic-native';
 
 import { FirebaseData } from './firebase-data';
 
@@ -28,14 +28,16 @@ export class LocationTracker {
         stationaryRadius: 20,
         distanceFilter: 30,
         maxLocations: 1000,
+
         // Android only section
+        startForeground:true,
         locationProvider: 1,
         interval: 5000,
         fastestInterval: 5000,
         activitiesInterval: 10000,
         notificationTitle: 'dondeVoy',
         notificationText: 'Guardando ruta...',
-        notificationIconColor: '#FEDD1E'
+        notificationIconColor: '#387ef5'    
       };
       BackgroundGeolocation.configure((location) => {
         console.log('BackgroundGeolocation:  ' + location.latitude + ',' + location.longitude);

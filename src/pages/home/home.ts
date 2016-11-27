@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 
 import { NavController, Platform } from 'ionic-angular';
-import { Geolocation,  BackgroundGeolocation } from 'ionic-native';
 
 import { LoginPage } from '../login/login';
 
@@ -38,6 +37,7 @@ export class HomePage {
   }
 
   logOut () {
+    this.locationTracker.stopTracking();
     this.authData.logoutUser().then(() => {
       this.navCtrl.setRoot(LoginPage);
     });

@@ -43,8 +43,7 @@ export class ResetPasswordPage {
         });
         alert.present();
 
-      }, (error) => {
-        var errorMessage: string = error.message;
+      }, (error) => {      
         let errorAlert = this.alertCtrl.create({
           message: 'No existe ningun usuario con ese email, revisa que este correctamente escrito.',
           buttons: [
