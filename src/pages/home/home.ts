@@ -36,8 +36,7 @@ export class HomePage {
     this.locationTracker.stopTracking();
   }
 
-  logOut () {
-    this.locationTracker.stopTracking();
+  logOut () {    
     this.authData.logoutUser().then(() => {
       this.navCtrl.setRoot(LoginPage);
     });
