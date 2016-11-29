@@ -15,7 +15,7 @@ import { SocialSharing } from 'ionic-native';
   templateUrl: 'home.html'
 })
 export class HomePage {
-
+  uid:any = firebase.auth().currentUser.uid;
   user:any = firebase.auth().currentUser;
   // hasta que no consigue la primera posicion con el getCurrentPosition no permite posiciones en background.
   permisoBackground: boolean = false;
@@ -44,7 +44,8 @@ export class HomePage {
   }
 
   share () {
-    SocialSharing.shareViaWhatsApp ('Sigue mi ruta en:', null, 'http://www.nachosoft.esy.es/dondevas');
+    let uid = this.uid;
+    SocialSharing.shareViaWhatsApp ('Sigue mi ruta en:', null, 'http://www.nachosoft.esy.es/dondevas/'+ uid);
   }
 
 } // Class home

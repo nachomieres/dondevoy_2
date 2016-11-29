@@ -45,7 +45,7 @@ export class LocationTracker {
         this.zone.run(() => {
           this.lat = location.latitude;
           this.lng = location.longitude;
-          this.time = location.timestamp;
+          this.time = location.bearing;
           this.firebaseData.inserta(location);
         });
       }, (err) => {

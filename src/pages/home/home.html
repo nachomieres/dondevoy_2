@@ -19,8 +19,8 @@
   <h3 text-center>{{locationTracker.lat}}</h3>
   <h3 text-center>Current Longitude:</h3>
   <h3 text-center>{{locationTracker.lng}}</h3>
-  <h3 text-center>Current Time:</h3>
-  <h3 text-center>{{locationTracker.time | date:'medium'}}</h3>
+  <h3 text-center>Bearing:</h3>
+  <h3 text-center>{{locationTracker.time}}</h3>
 
   <button ion-button block large margin-bottom (click)="arrancaBackground()">Arranca</button>
   <button ion-button block large (click)="paraBackground()">Para</button>
