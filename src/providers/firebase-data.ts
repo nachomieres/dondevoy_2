@@ -10,9 +10,12 @@ import firebase from 'firebase';
 */
 @Injectable()
 export class FirebaseData {
-  ref: any =   firebase.database().ref('/test');
+  fireAuth = firebase.auth();
+  ref: any;
   constructor() {
     console.log('Hello FirebaseData Provider');
+    console.log (this.fireAuth.currentUser.uid);
+    this.ref = firebase.database().ref(this.fireAuth.currentUser.uid);
   }
 
   inserta (location: any) {

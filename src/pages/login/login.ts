@@ -47,8 +47,8 @@ export class LoginPage {
     if (!this.loginForm.valid){
       console.log(this.loginForm.value);
     } else {
-      this.authData.loginUser(this.loginForm.value.email, this.loginForm.value.password).then( authData => {
-        this.navCtrl.setRoot(HomePage);
+      this.authData.loginUser(this.loginForm.value.email, this.loginForm.value.password).then( authData => {        
+        this.navCtrl.setRoot(HomePage, {uid: authData.uid});
       }, error => {
         this.loading.dismiss().then( () => {
           let alert = this.alertCtrl.create({
