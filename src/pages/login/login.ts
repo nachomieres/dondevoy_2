@@ -6,6 +6,8 @@ import { HomePage } from '../home/home';
 import { ResetPasswordPage } from '../reset-password/reset-password';
 import { SignUpPage } from '../sign-up/sign-up';
 
+import { EmailValidator } from '../../validators/email';
+
 import { AuthData } from '../../providers/auth-data';
 
 /*
@@ -30,7 +32,7 @@ export class LoginPage {
               public authData: AuthData, public formBuilder: FormBuilder) {
 
     this.loginForm = formBuilder.group({
-        email: ['', Validators.compose([Validators.required])],
+        email: ['', Validators.compose([Validators.required, EmailValidator.isValid])],
         password: ['', Validators.compose([Validators.minLength(6), Validators.required])]
       });
   }

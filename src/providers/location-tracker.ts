@@ -32,12 +32,12 @@ export class LocationTracker {
         // Android only section
         startForeground:true,
         locationProvider: 1,
-        interval: 5000,
-        fastestInterval: 5000,
+        interval: 2000,
+        fastestInterval: 2000,
         activitiesInterval: 10000,
         notificationTitle: 'dondeVoy',
         notificationText: 'Guardando ruta...',
-        notificationIconColor: '#387ef5'    
+        notificationIconColor: '#387ef5'
       };
       BackgroundGeolocation.configure((location) => {
         console.log('BackgroundGeolocation:  ' + location.latitude + ',' + location.longitude);

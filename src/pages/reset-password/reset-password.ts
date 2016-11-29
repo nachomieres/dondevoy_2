@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { NavController, LoadingController, AlertController } from 'ionic-angular';
 import { FormBuilder, Validators } from '@angular/forms';
 
+import { EmailValidator } from '../../validators/email';
+
 import { AuthData } from '../../providers/auth-data';
 
 /*
@@ -21,7 +23,7 @@ export class ResetPasswordPage {
               public formBuilder: FormBuilder,
               public loadingCtrl: LoadingController, public alertCtrl: AlertController) {
     this.resetForm = formBuilder.group({
-      email: ['', Validators.compose([Validators.required])]
+      email: ['', Validators.compose([Validators.required, EmailValidator.isValid])]
     });
   }
 
@@ -43,7 +45,7 @@ export class ResetPasswordPage {
         });
         alert.present();
 
-      }, (error) => {      
+      }, (error) => {
         let errorAlert = this.alertCtrl.create({
           message: 'No existe ningun usuario con ese email, revisa que este correctamente escrito.',
           buttons: [

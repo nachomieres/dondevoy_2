@@ -8,6 +8,7 @@ import { AuthData } from '../../providers/auth-data';
 import { LocationTracker } from '../../providers/location-tracker';
 
 import firebase from 'firebase';
+import { SocialSharing } from 'ionic-native';
 
 @Component({
   selector: 'page-home',
@@ -36,10 +37,14 @@ export class HomePage {
     this.locationTracker.stopTracking();
   }
 
-  logOut () {    
+  logOut () {
     this.authData.logoutUser().then(() => {
       this.navCtrl.setRoot(LoginPage);
     });
+  }
+
+  share () {
+    SocialSharing.shareViaWhatsApp ('Sigue mi ruta en:', null, 'http://www.nachosoft.esy.es/dondevas');
   }
 
 } // Class home
