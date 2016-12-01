@@ -10,17 +10,13 @@ import { EmailValidator } from '../../validators/email';
 
 import { AuthData } from '../../providers/auth-data';
 
-/*
-  Generated class for the Login page.
-
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
-*/
 @Component({
   selector: 'page-login',
   templateUrl: 'login.html'
 })
+
 export class LoginPage {
+
   public loginForm;
   submitAttempt = false;
   emailChanged: boolean = false;
@@ -35,7 +31,7 @@ export class LoginPage {
         email: ['', Validators.compose([Validators.required, EmailValidator.isValid])],
         password: ['', Validators.compose([Validators.minLength(6), Validators.required])]
       });
-  }
+  } // constructor
 
   elementChanged(input){
     let field = input.inputControl.name;
@@ -47,23 +43,17 @@ export class LoginPage {
     if (!this.loginForm.valid){
       console.log(this.loginForm.value);
     } else {
-      this.authData.loginUser(this.loginForm.value.email, this.loginForm.value.password).then( authData => {        
+      this.authData.loginUser(this.loginForm.value.email, this.loginForm.value.password).then( authData => {
         this.navCtrl.setRoot(HomePage, {uid: authData.uid});
       }, error => {
         this.loading.dismiss().then( () => {
           let alert = this.alertCtrl.create({
             message: "Error en los datos de acceso. \nRevisa el email y/o password",
-            buttons: [
-              {
-                text: "Ok",
-                role: 'cancel'
-              }
-            ]
+            buttons: [{ text: "Ok", role: 'cancel' }]
           });
           alert.present();
         });
       });
-
       this.loading = this.loadingCtrl.create({
         content: "espera por favor...",
         dismissOnPageChange: true,
@@ -79,4 +69,5 @@ export class LoginPage {
   goToResetPassword () {
     this.navCtrl.push(ResetPasswordPage);
   }
-}
+
+} // LoginPage

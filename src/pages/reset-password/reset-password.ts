@@ -6,17 +6,13 @@ import { EmailValidator } from '../../validators/email';
 
 import { AuthData } from '../../providers/auth-data';
 
-/*
-  Generated class for the ResetPassword page.
-
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
-*/
 @Component({
   selector: 'page-reset-password',
   templateUrl: 'reset-password.html'
 })
+
 export class ResetPasswordPage {
+
   public resetForm;
 
   constructor(public authData: AuthData, public navCtrl: NavController,
@@ -25,7 +21,7 @@ export class ResetPasswordPage {
     this.resetForm = formBuilder.group({
       email: ['', Validators.compose([Validators.required, EmailValidator.isValid])]
     });
-  }
+  } // constructor
 
   reset () {
     if (!this.resetForm.valid){
@@ -36,27 +32,21 @@ export class ResetPasswordPage {
         let alert = this.alertCtrl.create({
           message: "Te hemos enviado un email con las instrucciones para resetear el password",
           buttons: [{
-              text: "Ok",
-              role: 'cancel',
+              text: "Ok", role: 'cancel',
               handler: () => {
                 this.navCtrl.pop();
               }
             }]
         });
         alert.present();
-
       }, (error) => {
         let errorAlert = this.alertCtrl.create({
           message: 'No existe ningun usuario con ese email, revisa que este correctamente escrito.',
-          buttons: [
-            {
-              text: "Ok",
-              role: 'cancel'
-            }
-          ]
+          buttons: [{ text: "Ok", role: 'cancel' }]
         });
         errorAlert.present();
       });
     }
-  }
-}
+  } //reset
+
+} // ResetPasswordPage

@@ -7,17 +7,13 @@ import { EmailValidator } from '../../validators/email';
 
 import { HomePage } from '../home/home';
 
-/*
-  Generated class for the SignUp page.
-
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
-*/
 @Component({
   selector: 'page-sign-up',
   templateUrl: 'sign-up.html'
 })
+
 export class SignUpPage {
+
   public signupForm;
   emailChanged: boolean = false;
   passwordChanged: boolean = false;
@@ -26,13 +22,12 @@ export class SignUpPage {
 
   constructor(public navCtrl: NavController, public authData: AuthData, public formBuilder: FormBuilder,
     public loadingCtrl: LoadingController, public alertCtrl: AlertController) {
-
     this.signupForm = formBuilder.group({
       nombre: ['', Validators.compose ([Validators.minLength(3), Validators.required])],
       email: ['', Validators.compose([Validators.required, EmailValidator.isValid])],
       password: ['', Validators.compose([Validators.minLength(6), Validators.required])]
     })
-  }
+  } // constructor
 
   elementChanged(input){
     let field = input.inputControl.name;
@@ -50,25 +45,17 @@ export class SignUpPage {
         let alert = this.alertCtrl.create({
           message: "Cuenta creada correctamente...",
           buttons: [{
-              text: "Ok",
-              role: 'cancel',
-              handler: () => {
-                this.navCtrl.setRoot(HomePage);
-              }
-            }]
+            text: "Ok",  role: 'cancel', handler: () => {
+              this.navCtrl.setRoot(HomePage);
+            }
+          }]
         });
         alert.present();
-
       }, (error) => {
         this.loading.dismiss();
         let alert = this.alertCtrl.create({
           message: error.message,
-          buttons: [
-            {
-              text: "Ok",
-              role: 'cancel'
-            }
-          ]
+          buttons: [{text: "Ok", role: 'cancel' }]
         });
         alert.present();
       });
@@ -79,8 +66,6 @@ export class SignUpPage {
       });
       this.loading.present();
     }
-  }
+  } // signupUser
 
-
-
-}
+} // SignUpPage

@@ -13,6 +13,7 @@ export class MyApp {
   rootPage: any = LoginPage;
 
   constructor(platform: Platform) {
+    // Inicializacion de firebase
     firebase.initializeApp({
       apiKey: "AIzaSyBSIJ5QyOh90Q92wQG2C4BCnZp8mmtECCo",
       authDomain: "dondeando.firebaseapp.com",
